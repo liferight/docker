@@ -1,0 +1,29 @@
+1.创建deployment
+kubectl create -f nginx-deployment.yaml
+
+2.查看deployment
+kubectl get deployment
+
+3.查看pod
+kubectl get pod -o wide
+
+4.测试pod
+curl --head http://172.16.1.2
+
+5.更新deployment
+kubectl set image deployment/nginx-deployment nginx=nginx:1.12.1 --record
+
+6.查看更新后的deployment
+kubectl get deployment -o wide
+
+7.查看更新历史
+kubectl rollout history deployment/nginx-deployment
+
+8.查看具体某个版本升级历史
+kubectl rollout history deployment/nginx-deployment --revision=1
+
+9.快速回滚到上一个版本
+kubectl rollout undo deployment/nginx-deployment
+
+10.扩容到5个节点
+kubectl scale deployment nginx-deployment --replicas 5
